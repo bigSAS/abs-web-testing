@@ -6,36 +6,45 @@ import yaml
 import logging
 from selenium import webdriver
 from abs import expected_conditions as EC
-from time import sleep
 from dataclasses import dataclass
 
 
 logging.basicConfig(
     level=logging.INFO,
-    format="[%(asctime)s]\t[%(levelname)s]\t[%(name)s]\t%(message)s"
+    format="[%(asctime)s][%(levelname)s][%(name)s]::%(message)s"
 )
 
 logging.getLogger('abs-actions').setLevel(logging.INFO)
 logging.getLogger('abs-finder').setLevel(logging.DEBUG)
 
-# todo: formatting logs
+
+class Component(Page): pass  # type alias
+
+
+class OpenPostButton(Component):
+    POST_BUTTON = Locator(Using.XPATH, "//section[@class='blog-post' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
+
+    def click(self, post_title: str) -> None:
+        self.actions.click(self.POST_BUTTON.get_by(post_title=post_title), condition=EC.visibility_of_element_located)
 
 
 class SasKodzi(Page):
     """ Sample POP Page """
     url = 'https://sas-kodzi.pl'
     
-    # locators
     BLOG_BUTTON = Locator(Using.XPATH, '//a[@href="/blog"]')
-    POST_BUTTON = Locator(Using.XPATH, "//section[@class='blog-post' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
+    # POST_BUTTON = Locator(Using.XPATH, "//section[@class='blog-post' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
 
     def goto_posts(self) -> None:
         self.actions.click(self.BLOG_BUTTON.get_by(), timeout=3)
         self.actions.wait_for(XpathExists('//body'))
+    
+    # def open_post(self, post_title: str) -> None:
+    #     self.actions.click(self.POST_BUTTON.get_by(post_title=post_title), condition=EC.visibility_of_element_located)
+    #     self.actions.wait_for(XpathExists('//body'), timeout=50)
 
     def open_post(self, post_title: str) -> None:
-        self.actions.click(self.POST_BUTTON.get_by(post_title=post_title), condition=EC.visibility_of_element_located)
-        self.actions.wait_for(XpathExists('//body'), timeout=50)
+        OpenPostButton(self.actions).click(post_title)
 
 
 @dataclass
@@ -50,6 +59,7 @@ def get_config() -> Config:
     with open('example.config.yaml', 'r', encoding='utf-8') as c:
         data = yaml.load(c, Loader=yaml.FullLoader)
         return Config(**data)
+
 
 if __name__ == '__main__':
     config = get_config()
