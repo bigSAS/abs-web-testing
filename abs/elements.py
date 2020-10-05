@@ -80,14 +80,14 @@ class Locator:
     
     
     def __parameterize_value(self, **kwargs) -> str:
-        if len(kwargs.keys()) == 0: raise ValueError(f'Missing parameters: {self.parameters}')
+        if len(kwargs.keys()) == 0: raise ValueError(f'get_by method is missing keyword arguments: {self.parameters}')
         self.__validate_parameters(**kwargs)
         return self.value.format(**kwargs)
     
     def __validate_parameters(self, **kwargs):
         for param in self.parameters:
             if param not in kwargs.keys():
-                raise ValueError(f'Missing "{param}" parameter.')
+                raise ValueError(f'get_by method is missing keyword argument: {param}')
 
 
 class Finder(ABC):
@@ -133,4 +133,3 @@ class FluentFinder(Finder):
         c = condition if condition else self.default_multi_condition
         self.logger.debug(f'find_elements: {locator_tuple}, timeout: {t} sec, condition: {c}')
         return WebDriverWait(self.webdriver, t).until(c(locator_tuple))
- 

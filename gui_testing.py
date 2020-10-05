@@ -22,10 +22,11 @@ class Component(Page): pass  # type alias
 
 
 class OpenPostButton(Component):
-    POST_BUTTON = Locator(Using.XPATH, "//section[@class='blog-post' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
+    POST_BUTTON = Locator(Using.XPATH, "//section[@class='{css_class}' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
 
     def click(self, post_title: str) -> None:
-        self.actions.click(self.POST_BUTTON.get_by(post_title=post_title), condition=EC.visibility_of_element_located)
+        # parameterized selector example + condition override
+        self.actions.click(self.POST_BUTTON.get_by(css_class='blog-post', post_title=post_title), condition=EC.visibility_of_element_located)
 
 
 class SasKodzi(Page):
