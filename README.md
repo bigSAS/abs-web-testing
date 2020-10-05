@@ -10,6 +10,8 @@ python abs_tests.py
 
 ## TODO: basic use barebones
 
+## TODO: proxy selenium imports hints
+
 ## TODO: basic use POP
 
 ## TODO: configuration hints
