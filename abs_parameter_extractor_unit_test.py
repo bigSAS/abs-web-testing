@@ -1,5 +1,5 @@
 import unittest
-from abs.elements import ParameterExtractor
+from abswt.elements import ParameterExtractor
 
 
 class ParameterExtractorTest(unittest.TestCase):

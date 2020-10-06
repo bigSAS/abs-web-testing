@@ -2,7 +2,7 @@ import logging, sys
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
-from abs.elements import Finder
+from abswt.elements import Finder
 
 
 logger = logging.getLogger('abs-actions')

@@ -1,6 +1,6 @@
 import logging, sys
 from abc import ABC
-from abs.actions import Actions
+from abswt.actions import Actions
 
 
 logger = logging.getLogger('abs-page')

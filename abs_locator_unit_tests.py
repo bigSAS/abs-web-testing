@@ -1,4 +1,4 @@
-from abs.elements import Locator, Using
+from abswt.elements import Locator, Using
 import unittest
 
 

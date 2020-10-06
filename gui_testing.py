@@ -1,11 +1,11 @@
-from abs.pages import Page
-from abs.actions import Actions
-from abs.elements import FluentFinder, Locator, Using
-from abs.conditions import XpathExists
+from abswt.pages import Page
+from abswt.actions import Actions
+from abswt.elements import FluentFinder, Locator, Using
+from abswt.conditions import XpathExists
 import yaml
 import logging
 from selenium import webdriver
-from abs import expected_conditions as EC
+from abswt import expected_conditions as EC
 from dataclasses import dataclass
 
 
