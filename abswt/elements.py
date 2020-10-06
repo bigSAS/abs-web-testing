@@ -10,6 +10,7 @@ from selenium.webdriver.remote.webdriver import WebDriver
 
 
 class Using(Enum):
+    """ Enum for locator types, same as selenium By """
     ID = "id"
     NAME = "name"
     XPATH = "xpath"
@@ -46,7 +47,33 @@ class ParameterExtractor:
 
 
 class Locator:
-    """ Represents WebElement Locator with some extra goodies """
+    """
+    Represents WebElement Locator with some extra goodies
+    
+    Example usage:
+    Traditional static locator tuple:
+    
+    button = Locator(Using.XPATH, '//button')
+    # get locator tuple:
+    button.get_by()
+
+    
+    Goodies:
+    Parameterized locator tuple:
+    
+    parameterized_button = Locator(Using.XPATH, '//button[@name="{button_name}"]')
+    foo_by = parameterized_button.get_by(button_name='foo')  # -> ('xpath', '//button[@name="foo"]'
+    bar_by = parameterized_button.get_by(button_name='bar')  # -> ('xpath', '//button[@name="bar"]'
+    # ! parameters in curly brackets must be passed as keyword arguments into get_by method !
+    When forgoten to pass parameters you will get an error:
+    parameterized_button.get_by()
+    >>> ValueError: get_by method is missing keyword arguments: ['button_name']'
+    or
+    >>> ValueError: get_by method is missing keyword argument: button_name
+
+    For more examples head to README.md / docs :)
+    
+    """
     def __init__(self, using: Using, value: str, parameter_extractor: ParameterExtractor = None) -> None:
         self.__using = using
         self.__value = value
@@ -91,7 +118,11 @@ class Locator:
 
 
 class Finder(ABC):
-    """ Abstraction for finding WebElements """
+    """
+    Abstraction for finding WebElements
+    
+    Basic implementation in abs.elements.FluentFinder
+    """
 
     def __init__(self, webdriver: WebDriver) -> None:
         self.__webdriver = webdriver
@@ -115,6 +146,16 @@ class Finder(ABC):
 
 
 class FluentFinder(Finder):
+    """
+    Default Finder implementation. Should be usefull for most web testing use cases :)
+
+    Example usage:
+    finder = FluenFinder(webdriver, default_timeout = 5)
+
+    default_timeout -> is the default WebDriverWait timeout for finding WebElement -> it can be overriden in both of finder methods
+    default_single_condition -> default WebDriverWait condition for finding single WebElement -> it can be overriden in both of finder methods
+    default_multi_condition -> same as above, except for finding multiple WebElements
+    """
     default_single_condition = EC.presence_of_element_located
     default_multi_condition = EC.presence_of_all_elements_located
 

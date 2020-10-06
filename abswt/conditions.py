@@ -1,8 +1,16 @@
 from selenium.webdriver.remote.webdriver import WebDriver
 
+"""
+Expected conditions:
+
+To implement your own expected condition, selenium expects from you object with a __call__ implementation.
+Its good to remembet that selenium allways pasess WebDriver instance into __call__ method :)
+"""
 
 class XpathExists:
-    """ Wait for xpath to exist """
+    """
+    Wait for xpath to exist
+    """
     def __init__(self, xpath: str):
         self.__xpath = xpath
 

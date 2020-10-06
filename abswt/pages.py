@@ -9,7 +9,22 @@ logger.addHandler(stream_handler)
 
 
 class Page(ABC):
-    """ Page component base abstraction """
+    """
+    Page Object / Component base abstraction
+    It exposes Actions instance with .actions property
+
+    Example usage:
+    
+    class SasKodzi(Page):
+        url = 'https://sas-kodzi.pl'
+        
+        BLOG_BUTTON = Locator(Using.XPATH, '//a[@href="/blog"]')
+
+        def goto_posts(self) -> None:
+            self.actions.click(self.BLOG_BUTTON.get_by())
+            self.actions.wait_for(XpathExists('//body'))
+    """
+
     url = None
 
     def __init__(self, actions: Actions):

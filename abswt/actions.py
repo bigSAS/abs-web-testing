@@ -10,7 +10,37 @@ stream_handler = logging.StreamHandler(sys.stdout)
 logger.addHandler(stream_handler)
 
 class Actions:
-    """ ... """
+    """
+    Action - responsible for webdriver operations:
+    - finding elements
+    - clicking, typing, submiting etc...
+
+    Parameters:
+    finder:  abs.elements.Finder instance (u can use abs.elements.FluentFinder or implement your own :) )
+    wait_for_condition_timeout: default wait for condition timeout when using wait_for method
+    wait_between: default delay between action method calls, defaults 0sec
+
+    WebDriver and Finder are accessible with properties .webdriver and .finder
+
+    Action methods are preety self explanotary :)
+    Most action methods can override timeout (find WebElement timeout) and condition (expected condition for finding WebElement).
+    For readability purpouses they should be used as keyword arguments(timeout, condition)
+
+    Example usage:
+    finder = FluenFinder(webdriver, default_timeout=5)
+    actions = Actions(finder, wait_for_condition_timeout=10, wait_between=1)
+
+    actions.goto(url)
+    actions.click(locator)
+    actions.click(locator, timeout=10)
+    actions.click(locator, condition=EC.visibility_of_element_located)
+
+    For more practical examples check out README.md / docs
+
+    The actions.<method>(locator_tuple: tuple) -> classic tuple for selenium webriver methods ex: ('xpath', '//div/form') or ('id', 'foobar')
+
+    For helpful and super handy selector tuple implementation check out abs.elements.Locator documentation :) and examples in README.md / docs
+    """
     # todo: docstring
 
     def __init__(self, finder: Finder,  wait_for_condition_timeout: int, wait_between: int = 0) -> None:

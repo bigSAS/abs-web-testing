@@ -1,12 +1,10 @@
 # abs-web-testing
 
-Action Based Selenium Web Testing Library  
+Action Based Selenium Web Testing Library.  
+Compact Tooling 4 simplier selenium 🥳  
 
-## Run unit tests
-
-```sh
-python abs_tests.py
-```
+Supports **Python3.5+**  
+Supports **selenium>=3.141.0**
 
 ## TODO: basic use barebones
 
@@ -17,3 +15,9 @@ python abs_tests.py
 ## TODO: configuration hints
 
 ## TODO: pytest hints
+
+## Run unit tests
+
+```sh
+python abs_tests.py
+```
