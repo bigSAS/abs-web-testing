@@ -1,6 +1,6 @@
 from abswt.pages import Page
 from abswt.actions import Actions
-from abswt.elements import FluentFinder, Locator, Using
+from abswt.elements import FluentFinder, Locator, SimpleFinder, Using
 from abswt.conditions import XpathExists
 import yaml
 import logging
@@ -22,7 +22,7 @@ class Component(Page): pass  # type alias
 
 
 class OpenPostButton(Component):
-    POST_BUTTON = Locator(Using.XPATH, "//section[@class='{css_class}' and contains(., '{post_title}')]//a[contains(., 'Czytaj dalej')]")
+    POST_BUTTON = Locator(Using.XPATH, "//section[@class='{css_class}' and contains(., '{post_title}')]//a[contains(., 'Czytaj')]")
 
     def click(self, post_title: str) -> None:
         # parameterized selector example + condition override
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     config = get_config()
     driver = webdriver.Chrome(executable_path=config.wd_path)
     driver.maximize_window()
-    finder = FluentFinder(webdriver=driver, default_timeout=config.find_element_timeout)
+    finder = SimpleFinder(webdriver=driver)  #, default_timeout=config.find_element_timeout)
     actions = Actions(
         finder=finder,
         wait_for_condition_timeout=config.wait_for_condition_timeout,
@@ -76,6 +76,6 @@ if __name__ == '__main__':
     sas_kodzi_page = SasKodzi(actions)
     sas_kodzi_page.open()
     sas_kodzi_page.goto_posts()
-    sas_kodzi_page.open_post('Python od zera pt2 - proste typy danych')
+    sas_kodzi_page.open_post('Python od zera część 2 - proste typy danych')
 
     driver.quit()
