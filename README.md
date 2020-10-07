@@ -27,6 +27,12 @@ There are 3 main features:
 Each one of them can be used separately, for your own needs 👌  
 Of course they worked great combined toogether (will be explained in **Practical Examples** section ☝️)  
 
+## Instalation
+
+```sh
+pip install abs-web-testing
+```
+
 ## Practical examples
 
 Examples of using ABS.  
