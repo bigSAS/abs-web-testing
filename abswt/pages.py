@@ -36,7 +36,7 @@ class Page(ABC):
 
     @property
     def title(self):
-        return self.__actions.element_provider.driver.title
+        return self.actions.finder.webdriver.title
 
     def open(self, url: str = None):
         uri = url if url else self.url
