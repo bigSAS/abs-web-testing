@@ -5,6 +5,9 @@
 
 Welcome to abs-web-testing's documentation!
 ===========================================
+.. note::
+   Project is in early development but can be considered as stable 👊.  
+   Currenty working towards v.1.0
 
 .. toctree::
    :maxdepth: 2
