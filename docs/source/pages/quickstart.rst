@@ -21,6 +21,11 @@ There are 3 main features:
 Each one of them can be used separately, for your own needs 👌  
 Of course they worked great combined toogether (will be explained in **Practical Examples** section ☝️)  
 
+.. note::
+   As for tooday lib is ment to be as barebones as is. And ultra slim.
+   If you have any feature requests feel free to issue them on github 👍
+
+
 Instalation
 ###########
 

@@ -10,7 +10,13 @@ Goal: **v1.0** 🤖 (currently working towards v1.0 - API may slightly change �
 
 Example testing project: [**python-pytest-abs-sample-project**](https://github.com/bigSAS/python-pytest-abs-sample-project)
 
-## Disclaimer
+## Example usage
+
+```python
+...
+```
+
+Feel free to explore doccumentation at [https://abs-web-testing.readthedocs.io/](https://abs-web-testing.readthedocs.io/)
 
 As for tooday lib is ment to be as barebones as is. And ultra slim.  
 If you have any feature requests feel free to issue them on github 👍  
