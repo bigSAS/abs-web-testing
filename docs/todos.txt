@@ -1,0 +1,66 @@
+
+### Finder
+
+**abswt.elements.Finder** its an abstraction needed for action framewrok. Interpreted as an inteface for finding WebElements.  
+U can use abswt.elements.**FluentFinder** or implement your own to suite your own needs 🧠.  
+
+```python
+from abswt.elements import FluentFinder
+
+
+# basic usage
+finder = FluentFinder(driver, 5)
+button = finder.find_element(('id', 'button'))  # single WebElement
+options = finder.find_elemens('tag name', 'option')  # many WebElements
+```  
+
+Custom Finder examples  
+
+```python
+from abswt.elements import Finder, FluentFinder
+from abswt import expected_conditions as EC
+
+
+# custom FluentFinder
+# FluentFinder defaut conditions are -> elements must be present
+class VisibleFluentFinder(FluentFinder):
+    # my default condtitions -> elements must be visible
+    default_single_condition = EC.visibility_of_element_located
+    default_multi_condition = EC.visibility_of_all_elements_located
+
+#custom Finder
+class SimpleFinder(Finder):
+    # most basic WebElement finder (dont use it like that 💀)
+
+    def find_element(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> WebElement:
+        return self.webdriver.find_element(**locator_tuple)
+
+    def find_elements(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> WebElement:
+        return self.webdriver.find_elements(**locator_tuple)
+```
+
+I hope You'll get the idea 👍  
+
+### PyTest
+
+## Logging
+
+## API
+
+### abswt.elements.**Locator**
+
+todo
+
+### abswt.elements.**FluentFinder**
+
+todo
+
+### abswt.actions.**Actions**
+
+todo
+
+## Run unit tests
+
+```sh
+python abs_tests.py
+```
