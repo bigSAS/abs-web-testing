@@ -69,6 +69,11 @@ class Actions:
         logger.info(f'type text:: {locator_tuple}')
         self.finder.find_element(locator_tuple, timeout, condition).send_keys(text)
         self.sleep()
+        
+    def clear_field(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> None:
+        logger.info(f'clear field:: {locator_tuple}')
+        self.finder.find_element(locator_tuple, timeout, condition).clear()
+        self.sleep()
     
     def submit(self, locator_tuple: tuple = None, timeout: int = None, condition: object = None) -> None:
         lt = locator_tuple if locator_tuple else ('xpath', '//form')
@@ -92,7 +97,13 @@ class Actions:
     def execute_js(self, js_script: str) -> str:
         logger.info(f'execute js::\n{js_script}')
         return str(self.webdriver.execute_script(js_script))
-
+    
+    def hover(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> None:
+        logger.info(f'hover element:: {locator_tuple}')
+        element = self.finder.find_element(locator_tuple, timeout, condition)
+        ActionChains(self.webdriver).move_to_element(element).perform()
+        self.sleep()
+        
     def sleep(self, sec: int = None):
         seconds = sec if sec else self.wait_between_sec
         logger.debug(f'sleep:: {seconds} sec')
