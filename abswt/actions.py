@@ -2,6 +2,7 @@ import logging, sys
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
 from abswt.elements import Finder
 
 
