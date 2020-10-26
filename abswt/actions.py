@@ -42,7 +42,7 @@ class Actions:
 
     For helpful and super handy selector tuple implementation check out abs.elements.Locator documentation :) and examples in README.md / docs
     """
-    # todo: docstring
+    # todo: docstrings for action methods ...
 
     def __init__(self, finder: Finder,  wait_for_condition_timeout: int, wait_between: int = 0) -> None:
         self.wait_between_sec = wait_between
@@ -71,7 +71,7 @@ class Actions:
         self.finder.find_element(locator_tuple, timeout, condition).send_keys(text)
         self.sleep()
         
-    def clear_field(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> None:
+    def clear(self, locator_tuple: tuple, timeout: int = None, condition: object = None) -> None:
         logger.info(f'clear field:: {locator_tuple}')
         self.finder.find_element(locator_tuple, timeout, condition).clear()
         self.sleep()

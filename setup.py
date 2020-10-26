@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'abs-web-testing',
   packages = ['abswt'],
-  version = '0.4',
+  version = '0.5',
   license='MIT',
   description = 'Action Based Selenium WebTesting library - selenium in more accessible way :)',
   author = 'Tomasz Majk',
